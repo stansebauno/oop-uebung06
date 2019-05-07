@@ -5,6 +5,24 @@ class Liste<T> {
 		T value;
 		Element next;
 		Element(T value) { this.value = value; }
+		void insert(T value)
+		{
+			if(next == null)
+				this.next = new Element(value);
+			else
+			{
+				next.insert(value);
+			}
+		}
+		boolean contains(T value)
+		{
+			if(this.value.equals(value))
+			{return true;}
+			else if(next!= null)
+				return next.contains(value);
+			else
+				return false;
+		}
 	}
 
 	private Element first;
@@ -29,7 +47,14 @@ class Liste<T> {
 	 * Wie `add`, aber rekursiv zu implementieren.
 	 */
 	void addRek(T value) {
-		throw new UnsupportedOperationException();
+		if (first == null) {
+			first = new Element(value);
+			return;
+		}
+		else
+		{
+			first.insert(value);
+		}
 	}
 
 	/**
@@ -53,7 +78,10 @@ class Liste<T> {
 	 * Wie `contains`, nur rekursiv zu implementieren.
 	 */
 	boolean containsRek(T value) {
-		throw new UnsupportedOperationException();
+		if (first == null)
+			return false;
+		else
+			return first.contains(value);
 	}
 
 	/**
